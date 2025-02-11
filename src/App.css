@@ -1,0 +1,202 @@
+/* App.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f3f4f6;
+}
+
+/* A4 page styles */
+@media print {
+  body {
+    background-color: white;
+  }
+  
+  .container {
+    padding: 0 !important;
+    max-width: 21cm !important;
+  }
+}
+
+/* Make the page look like paper */
+.bg-white {
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Recharts customization */
+.recharts-legend-item {
+  margin-bottom: 8px !important;
+}
+
+.recharts-legend-item-text {
+  font-size: 0.875rem !important;
+}
+
+.recharts-tooltip-wrapper {
+  filter: drop-shadow(0 4px 3px rgb(0 0 0 / 0.07));
+}
+
+.recharts-tooltip-label {
+  margin-bottom: 4px;
+  color: #4B5563;
+  font-weight: 500;
+}
+
+.recharts-tooltip-item {
+  color: #6B7280 !important;
+  font-size: 0.875rem !important;
+}
+
+.recharts-sector:hover {
+  transition: opacity 0.2s;
+  opacity: 0.85;
+}
+
+/* Table styles */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  font-weight: 500;
+  color: #6B7280;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+td {
+  padding: 0.75rem 1rem;
+  font-size: 0.875rem;
+}
+
+/* Remove old unused styles */
+.App, .chart-container, .category-group, .category-list {
+  display: none;
+}
+
+/* Transaction table styles */
+.divide-y > tr:not(:last-child) {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hover effect for transaction rows */
+.hover\:bg-gray-50:hover {
+  background-color: #f9fafb;
+}
+
+/* Transaction table header */
+thead tr {
+  background-color: #f9fafb;
+}
+
+/* Transaction table footer */
+tfoot {
+  background-color: #f9fafb;
+}
+
+/* Shadow for expanded section */
+.shadow-sm {
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+/* Print styles */
+@media print {
+  /* Update chart container for print */
+  .recharts-wrapper {
+    margin: 0 auto !important;
+    width: 100% !important;
+    height: 500px !important;
+    max-width: 1000px !important;
+  }
+
+  /* Update legend positioning for print */
+  .recharts-legend-wrapper {
+    position: absolute !important;
+    right: 0 !important;
+    left: auto !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    background: transparent !important;
+    width: 400px !important;
+  }
+
+  /* Adjust pie chart position */
+  .recharts-pie {
+    transform: translateX(-30px);
+  }
+
+  /* Ensure text doesn't overlap */
+  .recharts-legend-item {
+    margin-bottom: 12px !important;
+    white-space: nowrap !important;
+  }
+
+  .recharts-legend-item-text {
+    color: #374151 !important;
+    font-size: 0.75rem !important;
+    white-space: nowrap !important;
+  }
+
+  .recharts-surface {
+    overflow: visible;
+  }
+
+  .recharts-legend-item {
+    page-break-inside: avoid;
+  }
+
+  /* Ensure tables don't break across pages */
+  tr, td, th {
+    page-break-inside: avoid;
+  }
+
+  /* Ensure white background for printing */
+  .bg-white {
+    background-color: white !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Ensure consistent column widths */
+  .w-1\/4 {
+    width: 25% !important;
+  }
+  
+  .w-1\/2 {
+    width: 50% !important;
+  }
+  
+  .w-2\/5 {
+    width: 40% !important;
+  }
+  
+  .w-1\/5 {
+    width: 20% !important;
+  }
+}
+
+/* Ensure consistent column widths in normal view */
+th.w-1\/4, td.w-1\/4 {
+  width: 25%;
+}
+
+th.w-1\/2, td.w-1\/2 {
+  width: 50%;
+}
+
+th.w-2\/5, td.w-2\/5 {
+  width: 40%;
+}
+
+th.w-1\/5, td.w-1\/5 {
+  width: 20%;
+}
