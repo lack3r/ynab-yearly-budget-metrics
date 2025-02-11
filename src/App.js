@@ -4,19 +4,10 @@ import React, { useEffect, useState } from "react";
 // 1) Import Recharts components
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 
-// Define a color palette for the pie chart
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#af19ff", "#8884d8"];
-
-// Helper function to format YNAB "milliunits" as currency
-// YNAB stores amounts as integer "milliunits," i.e. €10.00 => 10000
-const formatCurrency = (milliunits) => {
-  // If the value is null/undefined, return "€0.00"
-  if (!milliunits) return "€0.00";
-  return (milliunits / 1000).toLocaleString("en-US", {
-    style: "currency",
-    currency: "EUR",
-  });
-};
+// Import settings and utilities
+import { COLORS, EXCLUDED_GROUPS, CHART_CONFIG } from './config/settings';
+import { formatCurrency, getSpendingStatus } from './utils/formatters';
+import { YNABService } from './services/ynabApi';
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -27,18 +18,8 @@ function App() {
   const [transactions, setTransactions] = useState({});
   const [expandedCategory, setExpandedCategory] = useState(null);
 
-  // 2) Access token from .env
+  // Access token from .env
   const token = process.env.REACT_APP_YNAB_ACCESS_TOKEN;
-
-  const EXCLUDED_GROUPS = [
-    "Contingency",  // Simplified to match partial name
-    "Internal Master Category",
-    "Credit Card Payments",
-    "Hidden Categories"
-  ];
-
-  // Add this debug log
-  console.log('All group names:', categories.map(g => g.name));
 
   useEffect(() => {
     const fetchCategories = async () => {
